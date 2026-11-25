@@ -70,21 +70,16 @@ export function Intro({ onEnvelopeOpen }) {
     introVideo.current?.play().catch(() => { });
   }
 
-  function trackIntroProgress() {
-    const video = introVideo.current;
-    if (!video) return;
-    if (video.currentTime > 0.05) setIntroVisible(true);
-    if (video.duration - video.currentTime <= 0.2 && !invitationOpen) {
-      setInvitationOpen(true);
-    }
-    const videoRef = useRef(null);
+ function trackIntroProgress() {
+  const video = introVideo.current;
+  if (!video) return;
 
-     useEffect(() => {
-    if (videoRef.current) {
-     videoRef.current.playbackRate = 0.75;
-     }
-      }, []);
-    }
+  if (video.currentTime > 0.05) setIntroVisible(true);
+
+  if (video.duration - video.currentTime <= 0.2 && !invitationOpen) {
+    setInvitationOpen(true);
+  }
+}
 
   function handleIntroError() {
     setInvitationOpen(true);
