@@ -15,7 +15,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     sitemap({
-      hostname: "https://TU-DOMINIO-DE-SOFI.vercel.app",
+      hostname: "https://sofiaxv-flame.vercel.app/",
       generateRobotsTxt: false,
     }),
   ],
