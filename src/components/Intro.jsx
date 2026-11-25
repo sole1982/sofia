@@ -74,10 +74,17 @@ export function Intro({ onEnvelopeOpen }) {
     const video = introVideo.current;
     if (!video) return;
     if (video.currentTime > 0.05) setIntroVisible(true);
-    if (video.duration - video.currentTime <= 0.8 && !invitationOpen) {
+    if (video.duration - video.currentTime <= 0.2 && !invitationOpen) {
       setInvitationOpen(true);
     }
-  }
+    const videoRef = useRef(null);
+
+     useEffect(() => {
+    if (videoRef.current) {
+     videoRef.current.playbackRate = 0.75;
+     }
+      }, []);
+    }
 
   function handleIntroError() {
     setInvitationOpen(true);
@@ -116,19 +123,21 @@ export function Intro({ onEnvelopeOpen }) {
         {!envelopeOpening && <p className="intro-hint">Toca para abrir</p>}
       </section>
 
-      <header className="hero" id="inicio">
-        <video
-          className="hero-video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="none"
-          aria-hidden="true"
-          poster={heroQuincesPoster}
-        >
-          <source src={heroQuinces} type="video/mp4" />
-        </video>
+     <header className="hero" id="inicio">
+  <video
+    ref={videoRef}
+    className="hero-video"
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="none"
+    aria-hidden="true"
+    poster={heroQuincesPoster}
+  >
+    <source src={heroQuinces} type="video/mp4" />
+  </video>
+</header>
 
         <nav className="navbar">
           <a className="brand" href="#inicio">
@@ -144,10 +153,10 @@ export function Intro({ onEnvelopeOpen }) {
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1><em className="quinceanera-title">
-            <span>Ana María</span>
+            <span>Sofía</span>
           </em></h1>
-          <p className="hero-date">11 · 12 · 2026</p>
-          <a className="outline-button" href="#bienvenida">Descubre los detalles</a>
+          <p className="hero-date">19 · 12 · 2026</p>
+          
         </div>
         <a className="scroll-hint" href="#bienvenida" aria-label="Continuar">
           <b><ChevronDown aria-hidden="true" /></b>
